@@ -1,2 +1,2 @@
 # Projetos-Sistemas-Embarcados
-Projetos criados durante a disciplina de Sistemas Embarcados por João Pedro e Nicolas Henrique
+Projetos criados, em linguagem C e Assembly, durante a disciplina de Projeto de Sistemas Computacionais Embarcados por João Pedro Machado de Almeida e Nicolas Henrique Fernandes da Silva.
