@@ -17,7 +17,7 @@ sbit KEY_ROW   = P0^2;
 sbit BTN_LEFT  = P0^6; 
 sbit BTN_RIGHT = P0^4;
 
-// B1, Linha 1 e Coluna 1
+// B1
 sbit KEY_ROW_1 = P0^3; 
 sbit BTN_COL_1 = P0^6;
 
@@ -78,7 +78,7 @@ void home_screen();
 // MAIN
 // ----
 void main() {
-    TMOD |= 0x01; // Timer 0 livre para RNG 
+    TMOD |= 0x01; // Timer 0
     TR0 = 1;
 
     GLCD_Init();
@@ -93,31 +93,33 @@ void main() {
         draw_frame();
         GLCD_PrintScore();
         delay(speed_delay);
+		
     }
 }
 
-// ----------------------
-// HARDWARE GLCD E TIMERS
-// ----------------------
 void delay(unsigned int ms) {
     unsigned int i, j;
+	
     for(i = 0; i < ms; i++)
         for(j = 0; j < 120; j++);
+	
 }
 
 void GLCD_ShortDelay() { 
 		unsigned char i; 
 
 		for(i=0; i<10; i++); 
-
+	
 }
+
 void GLCD_Enable() { 
 	EN = 1; 
 	GLCD_ShortDelay(); 
 	EN = 0; 
-}
-void GLCD_SendCmd(unsigned char cmd) { 
 	
+}
+
+void GLCD_SendCmd(unsigned char cmd) { 
 	RS = 0; 
 	RW = 0; 
 	GlcdDataBus = cmd; 
@@ -125,8 +127,8 @@ void GLCD_SendCmd(unsigned char cmd) {
 	GLCD_ShortDelay(); 
 
 }
-void GLCD_SendData(unsigned char dat) { 
 
+void GLCD_SendData(unsigned char dat) { 
 	RS = 1; 
 	RW = 0; 
 	GlcdDataBus = dat; 
@@ -152,20 +154,22 @@ void GLCD_Init() {
     delay(10); 
     GLCD_SendCmd(0x36); 
     delay(10); 
+	
 }
 
 void GLCD_SetGraphicAddress(unsigned char x, unsigned char y) {
     if(y < 32) {
         GLCD_SendCmd(0x80 | y);     
-        GLCD_SendCmd(0x80 | x);     
+        GLCD_SendCmd(0x80 | x);  
+		
     } else {
         GLCD_SendCmd(0x80 | (y - 32));
         GLCD_SendCmd(0x88 | x);     
+		
     }
 }
 
 void GLCD_ClearText() { 
-
 		GLCD_SendCmd(0x30); 
 		GLCD_SendCmd(0x01); 
 
@@ -180,15 +184,17 @@ void GLCD_DrawSprite16Clip(unsigned char x, signed int y, unsigned char code *bm
     unsigned char i;
     for(i = 0; i < 16; i++) {
         signed int draw_y = y + i;
+		
         if(draw_y >= 0 && draw_y < 64) {
             GLCD_SetGraphicAddress(x, (unsigned char)draw_y);
             GLCD_SendData(bmp[i*2]);     
             GLCD_SendData(bmp[i*2 + 1]); 
+			
         }
     }
 }
 
-// Função de Pista
+// Função Pista
 void GLCD_DrawTrack(unsigned char anim) {
     unsigned char y, x, seg;
     int offset;
@@ -208,16 +214,19 @@ void GLCD_DrawTrack(unsigned char anim) {
                 // Borda Esquerda: Desenha 4 pixels colados à direita do bloco
                 GLCD_SendData(0x00); 
                 GLCD_SendData(0x0F); 
+				
             } 
             else if (dash_on && x == (6 + offset)) {
                 // Borda Direita: Desenha 4 pixels colados à esquerda do bloco
                 GLCD_SendData(0xF0); 
                 GLCD_SendData(0x00); 
+				
             } 
             else {
                 // Restante da tela totalmente limpa (vazio)
                 GLCD_SendData(0x00);
                 GLCD_SendData(0x00);
+				
             }
         }
     }
@@ -228,14 +237,19 @@ void GLCD_DrawTrack(unsigned char anim) {
 // -------------
 void GLCD_PrintText(unsigned char line, unsigned char col, char *str) {
     unsigned char addr;
-    if(line == 1) addr = 0x80;
-    else if(line == 2) addr = 0x90;
-    else if(line == 3) addr = 0x88;
-    else addr = 0x98;
+    if(line == 1) 
+		addr = 0x80;
+    else if(line == 2) 
+		addr = 0x90;
+    else if(line == 3) 
+		addr = 0x88;
+    else 
+		addr = 0x98;
     
     GLCD_SendCmd(0x30); 
     GLCD_SendCmd(addr + col);
     while(*str) GLCD_SendData(*str++);
+	
 }
 
 void GLCD_PrintScore() {
@@ -248,6 +262,7 @@ void GLCD_PrintScore() {
     buf[5] = '\0';
     GLCD_PrintText(1, 1, " KM/H:");
     GLCD_PrintText(1, 4, buf);
+	
 }
 
 // ------------------------------------
@@ -259,13 +274,17 @@ void scan_key() {
     
     if(BTN_LEFT == 0) {
         delay(10); 
-        if(BTN_LEFT == 0 && player_x > 0) player_x--;
+        if(BTN_LEFT == 0 && player_x > 0) 
+			player_x--;
         while(BTN_LEFT == 0); 
+		
     }
     if(BTN_RIGHT == 0) {
         delay(10);
-        if(BTN_RIGHT == 0 && player_x < 7) player_x++;
+        if(BTN_RIGHT == 0 && player_x < 7) 
+			player_x++;
         while(BTN_RIGHT == 0);
+		
     }
 }
 
@@ -279,8 +298,10 @@ void update_game() {
         track_curve[2] = track_curve[1];
         track_curve[1] = track_curve[0];
 
-        if (track_curve[0] < target_curve) track_curve[0]++;
-        else if (track_curve[0] > target_curve) track_curve[0]--;
+        if (track_curve[0] < target_curve) 
+			track_curve[0]++;
+        else if (track_curve[0] > target_curve) 
+			track_curve[0]--;
         else {
             target_curve = (TL0 % 5) - 2; 
         }
@@ -291,7 +312,8 @@ void update_game() {
         enemy_x = (TL0 % 4) + 2 + track_curve[0]; 
         
         score += 10;
-        if(score % 100 == 0 && speed_delay > 10) speed_delay -= 3; 
+        if(score % 100 == 0 && speed_delay > 10) 
+			speed_delay -= 3; 
         if(score >= 1000) you_win();
     }
 
