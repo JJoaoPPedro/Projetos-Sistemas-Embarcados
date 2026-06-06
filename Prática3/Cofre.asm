@@ -206,9 +206,9 @@ Org 0000h ;endereço de inicio do programa na memória
    ;Quarta linha
    Icode3:
 
-        JNB p0.6, KeyC30 ;Se ~P0.4, KeyC30
+        JNB p0.6, KeyC30 ;Se ~P0.6, KeyC30
         JNB p0.5, KeyC31 ;Se ~P0.5, KeyC31
-        JNB p0.4, KeyC32 ;Se ~P0.6, KeyC32
+        JNB p0.4, KeyC32 ;Se ~P0.4, KeyC32
        
         RET
 
@@ -236,9 +236,9 @@ Org 0000h ;endereço de inicio do programa na memória
     ;Terceira Linha
     Icode2:
 
-        JNB p0.6, KeyC20 ;Se ~P0.4, KeyC20
+        JNB p0.6, KeyC20 ;Se ~P0.6, KeyC20
         JNB p0.5, KeyC21 ;Se ~P0.5, KeyC21
-        JNB p0.4, KeyC22 ;Se ~P0.6, KeyC22
+        JNB p0.4, KeyC22 ;Se ~P0.4, KeyC22
        
         RET
 
@@ -266,9 +266,9 @@ Org 0000h ;endereço de inicio do programa na memória
     ;Segunda Linha
     Icode1:
 
-        JNB p0.6, KeyC10 ;Se ~P0.4, KeyC10
+        JNB p0.6, KeyC10 ;Se ~P0.6, KeyC10
         JNB p0.5, KeyC11 ;Se ~P0.5, KeyC11
-        JNB p0.4, KeyC12 ;Se ~P0.6, KeyC12
+        JNB p0.4, KeyC12 ;Se ~P0.4, KeyC12
        
         RET
 
@@ -296,9 +296,9 @@ Org 0000h ;endereço de inicio do programa na memória
     ;Primeira Linha
     Icode0:
 
-        JNB p0.6, KeyC00 ;Se ~P0.4, KeyC00
+        JNB p0.6, KeyC00 ;Se ~P0.6, KeyC00
         JNB p0.5, KeyC01 ;Se ~P0.5, KeyC01
-        JNB p0.4, KeyC02 ;Se ~P0.6, KeyC02
+        JNB p0.4, KeyC02 ;Se ~P0.4, KeyC02
        
         RET
 
