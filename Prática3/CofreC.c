@@ -110,27 +110,63 @@ char scanKey() {
 
         // Linha 4
 		teclado = 0xFE;
-        if(!(teclado & 0x40)) { esperaSoltar(); return '*'; }
-        if(!(teclado & 0x20)) { esperaSoltar(); return '0'; }
-        if(!(teclado & 0x10)) { esperaSoltar(); return '#'; }
+        if(!(teclado & 0x40)) { 
+			esperaSoltar(); 
+			return '*'; 
+		}
+        if(!(teclado & 0x20)) { 
+			esperaSoltar(); 
+			return '0'; 
+		}
+        if(!(teclado & 0x10)) { 
+			esperaSoltar(); 
+			return '#'; 
+		}
 
         // Linha 3
         teclado = 0xFD;
-        if(!(teclado & 0x40)) { esperaSoltar(); return '7'; }
-        if(!(teclado & 0x20)) { esperaSoltar(); return '8'; }
-        if(!(teclado & 0x10)) { esperaSoltar(); return '9'; }
+        if(!(teclado & 0x40)) { 
+			esperaSoltar(); 
+			return '7'; 
+		}
+        if(!(teclado & 0x20)) { 
+			esperaSoltar(); 
+			return '8'; 
+		}
+        if(!(teclado & 0x10)) { 
+			esperaSoltar(); 
+			return '9'; 
+		}
 
         // Linha 2
         teclado = 0xFB;
-        if(!(teclado & 0x40)) { esperaSoltar(); return '4'; }
-        if(!(teclado & 0x20)) { esperaSoltar(); return '5'; }
-        if(!(teclado & 0x10)) { esperaSoltar(); return '6'; }
+        if(!(teclado & 0x40)) { 
+			esperaSoltar(); 
+			return '4'; 
+		}
+        if(!(teclado & 0x20)) { 
+			esperaSoltar(); 
+			return '5'; 
+		}
+        if(!(teclado & 0x10)) { 
+			esperaSoltar(); 
+			return '6'; 
+		}
 
         // Linha 1
         teclado = 0xF7;
-        if(!(teclado & 0x40)) { esperaSoltar(); return '1'; }
-        if(!(teclado & 0x20)) { esperaSoltar(); return '2'; }
-        if(!(teclado & 0x10)) { esperaSoltar(); return '3'; }
+        if(!(teclado & 0x40)) { 
+			esperaSoltar(); 
+			return '1'; 
+		}
+        if(!(teclado & 0x20)) { 
+			esperaSoltar(); 
+			return '2'; 
+		}
+        if(!(teclado & 0x10)) { 
+			esperaSoltar(); 
+			return '3'; 
+		}
     }
 }
 
