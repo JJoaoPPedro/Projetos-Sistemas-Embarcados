@@ -173,24 +173,24 @@ Org 0000h ;endereço de inicio do programa na memória
     ; Terceira Linha(2): 0 1 2
     ; Quarta Linha(3):   0 1 2
    
-    CLR p0.0 ;P0.3=0 Ativa quarta linha
+    CLR p0.0 ;P0.0=0 Ativa quarta linha
     CALL Icode3; Varre coluna
-    SETB p0.0 ;P0.3=1 Desativa
+    SETB p0.0 ;P0.0=1 Desativa
     JB F0, Done ;Se F0 = 1 => Tecla pressionada
    
-    CLR p0.1 ;P0.2=0 Ativa terceira linha
+    CLR p0.1 ;P0.1=0 Ativa terceira linha
     CALL Icode2; Varre coluna
-    SETB p0.1 ;P0.2=1 Desativa
+    SETB p0.1 ;P0.1=1 Desativa
     JB F0, Done ;Se F0 = 1 => Tecla pressionada
    
-    CLR p0.2 ;P0.1=0 Ativa segunda linha
+    CLR p0.2 ;P0.2=0 Ativa segunda linha
     CALL Icode1; Varre coluna
-    SETB p0.2 ;P0.1=1 Desativa
+    SETB p0.2 ;P0.2=1 Desativa
     JB F0, Done ;Se F0 = 1 => Tecla pressionada
    
-    CLR p0.3 ;P0.0=0 Ativa primeira linha
+    CLR p0.3 ;P0.3=0 Ativa primeira linha
     CALL Icode0; Varre coluna
-    SETB p0.3 ;P0.0=1 Desativa
+    SETB p0.3 ;P0.3=1 Desativa
     JB F0, Done ; Se F0 = 1 => Tecla pressionada
    
     JMP ScanKey ;Volta a varrer até encontrar
